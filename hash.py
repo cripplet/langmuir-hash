@@ -24,6 +24,7 @@ def main(stamp):
 	elif(args["mode"] == "log"):
 		log(args["dir"])
 
+# simulation
 def sim(confFile, gridFile, stamp):
 	conf = getConf(confFile)
 	if(conf["name"] != ""):
@@ -32,23 +33,25 @@ def sim(confFile, gridFile, stamp):
 	expr = Experiment(conf["steps"], conf["logs"], conf["hori"], conf["diag"], conf["dens"], conf["beta"], conf["energies"], gridFile, conf["mail"], conf["fold"], conf["name"])
 	expr.run()
 
+# render a grid
 def ren(confFile, gridFile):
 	print(genFrame(gridFile).renderGrid("cur", False))
-	# computs the total energy of the grid
+	# computes the total energy of the grid
 	if(confFile != ""):
 		conf = getConf(confFile)
 		expr = Experiment(conf["steps"], conf["logs"], conf["hori"], conf["diag"], conf["dens"], conf["beta"], conf["energies"], gridFile, conf["mail"], "", conf["name"])
 		expr.setEnergies()
+		print("total energy: " + str(expr.frame.getFrameEnergy(expr, "cur")) + "\n")
 		print(renderConfig(confFile))
-		print("total energy: " + str(expr.frame.getFrameEnergy(expr, "cur")))
 
-
+# log all runs into a csv output
 def log(dir):
 	s = "name,steps,dens,hori,diag,beta,000000,000001,000011,000101,001001,000111,001011,010011,010101,001111,010111,011011,011111,111111\n"
 	for log in listdir(dir):
 		s += renderCSV(dir + log) + "\n"
 	print(s)
 
+# analyze a grid (arrangement percentage)
 def lyz(confFile, gridFile):
 	conf = getConf(confFile)
 	expr = Experiment(conf["steps"], conf["logs"], conf["hori"], conf["diag"], conf["dens"], conf["beta"], conf["energies"], gridFile, conf["mail"], "", conf["name"])
