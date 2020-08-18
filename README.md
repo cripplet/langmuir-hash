@@ -1,9 +1,5 @@
 # Monte-Carlo Monolayer Hashing Simulation
 
-N.B.: This was written in 2012 and probably for Python 2.7, possibly 2.4. To get this to work in Python 3.7 may require some work.
-
-N.B.: If there is a significant rewrite of this, I would recommend porting over to the [Bazel](https://bazel.build/) build system.
-
 This is a Monte Carlo simluation for predicting the hashing patterns of nanoparticles deposited on a Langmuir trough.
 
 The simulation is invoked via `./hash.py -h`.
@@ -43,3 +39,8 @@ analysis.txt
 ```
 
 - Minke (minke.zhang@gmail.com)
+
+## Errata (2020)
+
+* This was written in 2012 and probably for Python 2.7, possibly 2.4. To get this to work in Python 3.7 may require some work.
+* If there is a significant rewrite of this, I would recommend porting over to the [Bazel](https://bazel.build/) build system.
